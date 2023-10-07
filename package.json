@@ -1,0 +1,11 @@
+{
+  "name": "socket-hub",
+  "version": "1.0.0",
+  "description": "An exchange server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
