@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exchange</title>
+</head>
+<body>
+Hello!
+
+<div>
+    <label for="text-input">Text</label><input type="text" id="text-input"/>
+    <button id="text-submit">Submit</button>
+</div>
+<label for="received">Received</label><textarea id="text-received"></textarea>
+
+<script src="/public/socket.io.js"></script>
+<script>
+  const socket = io({
+    query: {
+      room: 'exchange-web'
+    }
+  });
+
+  const textInput = document.querySelector('#text-input');
+  const textSubmit = document.querySelector('#text-submit');
+  const textReceived = document.querySelector('#text-received');
+
+  textSubmit.onclick = () => {
+    console.log('Emit!');
+
+    socket.emit('message', textInput.value);
+    textInput.value = '';
+  }
+
+  socket.on('message', (msg) => {
+    console.log('Receive!');
+
+    textReceived.innerText += msg;
+  })
+
+</script>
+</body>
+</html>

@@ -2,10 +2,17 @@
   "name": "socket-hub",
   "version": "1.0.0",
   "description": "An exchange server.",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "express": "^4.18.2",
+    "pug": "^3.0.2",
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3"
+  }
 }
