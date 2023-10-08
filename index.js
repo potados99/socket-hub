@@ -3,7 +3,7 @@ import {join, resolve} from "path";
 import express from 'express';
 import {Server} from 'socket.io';
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 19999;
 
 const app = express();
 const server = http.createServer(app);
