@@ -38,6 +38,11 @@ io.on('connection', (socket) => {
     io.to(room).emit('chat', msg);
   });
 
+  socket.on('chat-file', async (msg, callback) => {
+    socket.broadcast.to(room).emit('chat-file', msg); // exclude sender.
+    callback();
+  })
+
   socket.on('message', (msg) => {
     socket.broadcast.to(room).emit('message', msg); // exclude sender.
   });
