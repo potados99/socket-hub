@@ -133,9 +133,11 @@
 
         const progress = 100 * sent / payload.length;
 
-        message.querySelector('div.message-content').textContent = `${file.name} (${progress}%)`;
+        message.querySelector('div.message-content').textContent = `${file.name} (${progress.toFixed(2)}%)`;
         seq++;
       }
+
+      message.querySelector('div.message-content').textContent = `${file.name}`;
     };
     reader.readAsDataURL(file);
 
@@ -231,9 +233,11 @@
 
           const progress = 100 * currentFile.received / currentFile.size;
 
-          currentFile.messageElement.querySelector('div.message-content').textContent = `${currentFile.name} (${progress}%)`;
+          currentFile.messageElement.querySelector('div.message-content').textContent = `${currentFile.name} (${progress.toFixed(2)}%)`;
 
           if (currentFile.received === currentFile.size) {
+            currentFile.messageElement.querySelector('div.message-content').innerHTML = `<a download="${currentFile.name}" href="${currentFile.chunks.join('')}">${currentFile.name}</a>`;
+
             console.log('receive succeeded');
           }
 

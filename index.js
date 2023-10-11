@@ -1,8 +1,8 @@
 import http from 'http';
-import {join, resolve} from "path";
 import express from 'express';
 import {Server} from 'socket.io';
-import {generate, count} from "random-words";
+import {generate} from "random-words";
+import {join, resolve} from "path";
 
 const port = process.env.PORT || 19999;
 
