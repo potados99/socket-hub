@@ -24,23 +24,22 @@ app.get('/word', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-  const {room} = socket.handshake.query || 'default';
+  const id = socket.handshake.query.id;
+  const room = socket.handshake.query.room || 'default';
 
   socket.join(room);
-  console.log(`New connection on ${room} room.`);
+  io.to(room).emit('chat-notice', `${id || 'Unknown user'} joined.`);
 
   socket.on('disconnect', () => {
-    console.log('Disconnected.');
+    io.to(room).emit('chat-notice', `${id || 'Unknown user'} left the room.`);
   })
 
   socket.on('chat', (msg) => {
     io.to(room).emit('chat', msg);
-    console.log(`Chat forwarded to ${room}.`);
   });
 
   socket.on('message', (msg) => {
-    socket.broadcast.to(room).emit('message', msg);
-    console.log(`Message broadcast to ${room}.`);
+    socket.broadcast.to(room).emit('message', msg); // exclude sender.
   });
 });
 
