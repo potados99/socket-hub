@@ -80,6 +80,10 @@ body {
     color: #999;
 }
 
+.outbound > .datetime {
+    text-align: right;
+}
+
 .message-content {
     overflow-wrap: break-word;
 }
