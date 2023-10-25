@@ -208,7 +208,7 @@
       appendMessage(sender, message);
     });
 
-    socket.on('chat-file', (message) => {
+    socket.on('chat-file', (message, callback) => {
       const {type} = message;
 
       switch (type) {
@@ -224,7 +224,7 @@
           const currentFile = files[fileId];
 
           if (seq - currentFile.lastSeq > 1) {
-            console.error(`missing message! sequence ${currentFile.lastSeq + 1}~${parsed.seq - 1} is dropped!`);
+            console.error(`missing message! sequence ${currentFile.lastSeq + 1}~${seq - 1} is dropped!`);
           }
 
           currentFile.chunks.push(chunk);
@@ -244,6 +244,8 @@
           break;
         }
       }
+
+      callback('got it');
     });
 
     form.ondrop = ondrop;

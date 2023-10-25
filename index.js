@@ -39,7 +39,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('chat-file', async (msg, callback) => {
-    socket.broadcast.to(room).emit('chat-file', msg); // exclude sender.
+    await socket.broadcast.to(room).timeout(1000).emitWithAck('chat-file', msg); // exclude sender.
     callback();
   })
 
